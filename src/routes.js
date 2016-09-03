@@ -1,11 +1,13 @@
 import React from 'react';
-import { Router, IndexRoute } from 'react-router';
+import { Router, IndexRoute, Route } from 'react-router';
 
 import App from './components/app';
 import PostsIndex from './components/posts_index';
+import PostsNew from './components/posts_new.js';
 
 export default (
 <Router path="/" component={App} >
   <IndexRoute component={PostsIndex} />
+  <Route path="posts/new" component={PostsNew} />
 </Router>
 );
