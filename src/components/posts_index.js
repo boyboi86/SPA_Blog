@@ -5,6 +5,10 @@ import { fetchPosts } from '../actions/index';
 import { Link } from 'react-router';
 
 class PostsIndex extends Component {
+
+/*componentWillMount will initiate
+  when app first renders to kick start the initial data fetch*/
+  
 componentWillMount(){
   this.props.fetchPosts()
 }
