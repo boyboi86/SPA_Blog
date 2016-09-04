@@ -15,9 +15,9 @@ componentWillMount(){
 
 /* reducer fetch therefore this.props.posts */
 renderPosts(){
-  return this.props.posts.map((posts, index) => {
+  return this.props.posts.map((posts) => {
     return (
-      <li className="list-group-item" key={ index }>
+      <li className="list-group-item" key={ posts.id }>
         <span className="pull-xs-right">{ posts.categories }</span>
         <strong>{ posts.title }</strong>
       </li>
