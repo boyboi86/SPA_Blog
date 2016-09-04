@@ -11,7 +11,21 @@ componentWillMount(){
 }
 
   render(){
-    return <div>Blog show { this.props.params.id }</div>
+    const { post } = this.props;
+
+    if(!this.props.post){
+      return <div>Loading..</div>
+    }
+    return (
+      <div>
+        <div>Blog post: { this.props.params.id }</div>
+        <h3>{ post.title }</h3>
+        <h6>{ post.categories }</h6>
+        <p>{ post.content }</p>
+      </div>
+
+
+    )
   }
 }
 
@@ -19,5 +33,9 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators({ fetchPost }, dispatch);
 }
 
-//alternatively connect(null, {fetchPost})(PostsShow);
-export default connect(null, mapDispatchToProps)(PostsShow);
+function mapStateToProps(state){
+  return { post: state.posts.post }
+}
+
+//alternatively connect(mapStateToProps, {fetchPost})(PostsShow);
+export default connect(mapStateToProps, mapDispatchToProps)(PostsShow);
