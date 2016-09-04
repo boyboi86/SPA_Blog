@@ -18,8 +18,10 @@ renderPosts(){
   return this.props.posts.map((posts) => {
     return (
       <li className="list-group-item" key={ posts.id }>
-        <span className="pull-xs-right">{ posts.categories }</span>
-        <strong>{ posts.title }</strong>
+        <Link to={`posts/${posts.id}`}>
+          <span className="pull-xs-right">{ posts.categories }</span>
+          <strong>{ posts.title }</strong>
+        </Link>
       </li>
     )
   })
