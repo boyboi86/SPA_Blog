@@ -1,16 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { createPost } from '../actions/index';
 import { Link } from 'react-router';
 
 class PostsNew extends Component {
+  /*This is originally a flux method use for react-router case only */
+  
+  static contextTypes = {
+    router: PropTypes.object
+  }
+  /**redux-form ^6+ requires a proper onSubmit method to function
+    after post is created promise chain to using static contextTypes method to send user back to index page*/
+  onSubmit(props){
+    this.props.createPost(props)
+    .then(()=>{
+      this.context.router.push('/');
+    })
+  }
+
   render(){
     /*redux-form definition for fields
     Each element seperated by spacing is title, categories && content (see label tags)*/
 
     const { fields: { title, categories, content }, handleSubmit } = this.props;
     return (
-      <form onSubmit={ handleSubmit(this.props.createPost) }>
+      <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
       <h3>New Post</h3>
 
         <div className={`form-group ${title.touched && title.invalid ? 'has-danger': ''}`}>
