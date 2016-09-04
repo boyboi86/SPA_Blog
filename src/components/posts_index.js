@@ -8,9 +8,21 @@ class PostsIndex extends Component {
 
 /*componentWillMount will initiate
   when app first renders to kick start the initial data fetch*/
-  
+
 componentWillMount(){
   this.props.fetchPosts()
+}
+
+/* reducer fetch therefore this.props.posts */
+renderPosts(){
+  return this.props.posts.map((posts, index) => {
+    return (
+      <li className="list-group-item" key={ index }>
+        <span className="pull-xs-right">{ posts.categories }</span>
+        <strong>{ posts.title }</strong>
+      </li>
+    )
+  })
 }
 
   render(){
@@ -21,7 +33,10 @@ componentWillMount(){
             Add a Post
           </Link>
         </div>
-      List of blog posts
+        <h3> Posts </h3>
+          <ul className="list-group">
+            {this.renderPosts()}
+          </ul>
       </div>
     )
   }
@@ -30,5 +45,10 @@ componentWillMount(){
 function mapDispatchToProps(dispatch){
   return bindActionCreators({ fetchPosts }, dispatch);
 }
-// Alterntively connect(null, { fetchPosts })(PostsIndex);
-export default connect(null, mapDispatchToProps)(PostsIndex);
+
+function mapStateToProps(state){
+  return { posts: state.posts.all }
+}
+
+// Alterntively connect(mapStateToProps, { fetchPosts })(PostsIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(PostsIndex);
