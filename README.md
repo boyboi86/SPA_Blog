@@ -6,7 +6,7 @@ A simple blog to create/ read/ delete blog post using react and redux
 
 download zip file or `git clone` repo to working directory
 
-In terminal navigate to working directory then run `npm install` followed by `npm run`
+In terminal navigate to working directory then run `npm install` followed by `npm start`
 
 Open preferred browser then navigate to localhost:8080
 
