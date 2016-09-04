@@ -3,7 +3,8 @@ import { Router, IndexRoute, Route } from 'react-router';
 
 import App from './components/app';
 import PostsIndex from './components/posts_index';
-import PostsNew from './components/posts_new.js';
+import PostsNew from './components/posts_new';
+import PostsShow from './components/posts_show';
 
 export default (
 <Router path="/" component={App} >
